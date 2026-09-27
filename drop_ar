@@ -1,0 +1,27 @@
+#dropout:
+arch1:
+keras.layers.Dense(30, activation="relu"),
+keras.layers.Dropout(0.2),
+keras.layers.Dense(1)
+
+arch2:
+hidden1 = keras.layers.Dense(30, activation="relu")(input_B)
+hidden1 = keras.layers.Dropout(0.2)(hidden1)
+
+hidden2 = keras.layers.Dense(30, activation="relu")(hidden1)
+hidden2 = keras.layers.Dropout(0.2)(hidden2)
+
+concat = keras.layers.Concatenate()([input_A, hidden2])
+output = keras.layers.Dense(1)(concat)
+
+arch3:
+hidden1 = keras.layers.Dense(260, activation="relu")(input_B)
+hidden1 = keras.layers.Dropout(0.2)(hidden1)
+
+hidden2 = keras.layers.Dense(260, activation="relu")(hidden1)
+hidden2 = keras.layers.Dropout(0.2)(hidden2)
+
+concat = keras.layers.Concatenate()([input_A, hidden2])
+
+main_output = keras.layers.Dense(1, name="main_output")(concat)
+aux_output = keras.layers.Dense(1, name="aux_output")(hidden2)
