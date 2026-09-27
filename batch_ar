@@ -1,0 +1,30 @@
+#Batch
+arch1:
+model = keras.models.Sequential([
+    keras.layers.Dense(30),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation("relu"),
+    keras.layers.Dense(1)
+])
+
+arch2:
+hidden1 = keras.layers.Dense(30)(input_B)
+hidden1 = keras.layers.BatchNormalization()(hidden1)
+hidden1 = keras.layers.Activation("relu")(hidden1)
+
+hidden2 = keras.layers.Dense(30)(hidden1)
+hidden2 = keras.layers.BatchNormalization()(hidden2)
+hidden2 = keras.layers.Activation("relu")(hidden2)
+
+concat = keras.layers.Concatenate()([input_A, hidden2])
+
+arch3:
+hidden1 = keras.layers.Dense(260)(input_B)
+hidden1 = keras.layers.BatchNormalization()(hidden1)
+hidden1 = keras.layers.Activation("relu")(hidden1)
+
+hidden2 = keras.layers.Dense(260)(hidden1)
+hidden2 = keras.layers.BatchNormalization()(hidden2)
+hidden2 = keras.layers.Activation("relu")(hidden2)
+
+concat = keras.layers.Concatenate()([input_A, hidden2])
