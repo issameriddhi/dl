@@ -1,0 +1,41 @@
+#drop:
+#after pooling and before dropout layer
+model = tf.keras.Sequential([
+    layers.Input(shape=(28, 28, 1)),
+    layers.Conv2D(32, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+    layers.Dropout(0.25),
+
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+    layers.Dropout(0.25),
+
+    layers.Flatten(),
+    layers.Dense(128, activation='relu'),
+    layers.Dropout(0.5),
+    layers.Dense(10, activation='softmax')
+])
+
+#batch
+#after conv2d before activation
+layers.Conv2D(32, (3, 3)),
+layers.BatchNormalization(),
+layers.Activation('relu'),
+layers.MaxPooling2D((2, 2)),
+
+layers.Conv2D(64, (3, 3)),
+layers.BatchNormalization(),
+layers.Activation('relu'),
+layers.MaxPooling2D((2, 2)),
+
+
+#early stop
+#Add this block before model.fit():
+
+from tensorflow.keras.callbacks import EarlyStopping
+
+early_stop = EarlyStopping(
+    monitor='val_loss',
+    patience=3,
+    restore_best_weights=True
+)
