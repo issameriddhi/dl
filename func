@@ -4,7 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import r2_score
 from tensorflow import keras
 
-df = pd.read_csv("insurance.csv")
+df = pd.read_csv("/content/insurance.csv")
 
 df = pd.get_dummies(
     df,
@@ -12,8 +12,8 @@ df = pd.get_dummies(
     drop_first=True
 )
 
-X = df.drop("charges", axis=1).values
-y = df["charges"].values
+X = df.drop("expenses", axis=1).values
+y = df["expenses"].values
 
 X_train_full, X_test, y_train_full, y_test = train_test_split(
     X, y,
